@@ -8,7 +8,7 @@
 - [x] Create project plan
 - [ ] Create database
 - [ ] Create welcome page AWS
-- [ ] Start converting theme to jsp
+- [x] Start converting theme to jsp
 
 ### Week 2
 - [ ] Hibernate implementation
