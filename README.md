@@ -14,8 +14,8 @@ with the way to enjoy your hobbies.
 
 ### Project Technologies/Techniques 
 
-*RESTful API that returns response in different formats like JSON, XML, HTML and plain text
-*Hibernate
+* RESTful API that returns response in different formats like JSON, XML, HTML and plain text
+* Hibernate
 
 
 
