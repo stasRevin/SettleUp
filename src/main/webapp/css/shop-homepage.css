@@ -8,6 +8,11 @@ body {
   padding-top: 54px;
 }
 
+#logo {
+
+  width: 50%;
+}
+
 @media (min-width: 992px) {
   body {
     padding-top: 56px;

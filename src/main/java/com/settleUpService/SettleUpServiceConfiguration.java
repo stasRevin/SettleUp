@@ -16,4 +16,5 @@ public class SettleUpServiceConfiguration extends Application {
 
         return set;
     }
+
 }
