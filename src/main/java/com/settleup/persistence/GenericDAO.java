@@ -113,85 +113,27 @@ public class GenericDAO<T> {
         return entity;
     }
 
-    /**
-     * Get user by property (like)
-     * sample usage: getByPropertyLike("lastName", "C")
-     *
-     * @param propertyName entity property to search by
-     * @param value value of the property to search for
-     * @return list of users meeting the criteria search
-     */
-    public List<T> getByPropertyLike(String propertyName, String value) {
-        Session session = getSession();
-
-        logger.debug("Searching for user with {} = {}", propertyName, value);
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        Expression<String> propertyPath = root.get(propertyName);
-
-        query.where(builder.like(propertyPath, "%" + value + "%"));
-
-        List<T> entity = session.createQuery(query).getResultList();
-        session.close();
-        return entity;
-    }
 
 
-    public List<T> getByMultiplePropertiesTopClause(Map<String, Map<String, String>> entities, int limit) {
+
+    public List<T> getElementsAndClause(String fieldNameOne, int fieldValueOne, String fieldNameTow, String fieldValueTow) {
 
         Session session = getSession();
-
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery query = builder.createQuery(type);
 
         Root<T> root = query.from(type);
+        Predicate predicate = builder.and(
+                builder.equal(root.get(fieldNameOne), fieldValueOne),
+                builder.equal(root.get(fieldNameTow), fieldValueTow)
+        );
 
-        List<Predicate> predicates = new ArrayList<>();
-        List<T> result;
+        query.where(predicate);
+        List<T> element = session.createQuery(query).getResultList();
 
-
-        for (Map.Entry<String, Map<String, String>> firstEntry : entities.entrySet()) {
-
-            String entity = firstEntry.getKey();
-            Map<String, String> properties = firstEntry.getValue();
-
-            for (Map.Entry<String, String> secondEntry : properties.entrySet()) {
-
-                if (entity.isEmpty()) {
-
-                    predicates.add(builder.equal(root.get(secondEntry.getKey()), secondEntry.getValue()));
-                    break;
-
-                }
-
-                predicates.add(builder.equal(root.get(entity).get(secondEntry.getKey()), secondEntry.getValue()));
-
-            }
-
-        }
-
-
-        query.select(root).where(predicates.toArray(new Predicate[]{}));
-
-        if (limit == 0) {
-
-            result = session.createQuery(query).getResultList();
-
-        } else {
-
-            result = session.createQuery(query).setMaxResults(limit).getResultList();
-        }
-
-
-        logger.info(limit);
-        logger.info("list of steps " + result);
-
-        return result;
+        return element;
 
     }
-
 
 
 
