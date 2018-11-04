@@ -23,10 +23,6 @@ with the way to enjoy your hobbies.
 
 ### Design
 
-* [Screen Design](DesignDocuments/Screens.md)
-* [Application Flow](DesignDocuments/applicationFlow.md)
 * [Database Design](DesignDocuments/databaseDiagram.png)
 
 ### [Project Plan](ProjectPlan.md)
-
-### [Development Journal](Journal.md)
