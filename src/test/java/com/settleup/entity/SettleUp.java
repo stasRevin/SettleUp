@@ -1,11 +1,11 @@
-package settleup.entity;
+package com.settleup.entity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import settleup.persistence.GenericDAO;
+import com.settleup.persistence.GenericDAO;
 
 
 import javax.ws.rs.client.Client;

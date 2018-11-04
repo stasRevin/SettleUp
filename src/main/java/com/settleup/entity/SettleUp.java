@@ -1,4 +1,4 @@
-package settleup.entity;
+package com.settleup.entity;
 
 
 import lombok.Data;

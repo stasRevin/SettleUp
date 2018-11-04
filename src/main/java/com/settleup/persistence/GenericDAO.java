@@ -1,4 +1,4 @@
-package settleup.persistence;
+package com.settleup.persistence;
 
 
 import org.apache.logging.log4j.LogManager;

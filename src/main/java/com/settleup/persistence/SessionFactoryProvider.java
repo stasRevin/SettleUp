@@ -1,4 +1,4 @@
-package settleup.persistence;
+package com.settleup.persistence;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;
