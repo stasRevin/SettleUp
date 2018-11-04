@@ -55,3 +55,8 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+log4j2.properties
+# log4j2.properties
+
+hibernate.cfg.xml

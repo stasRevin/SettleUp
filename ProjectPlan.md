@@ -4,7 +4,7 @@
 - [x] Create project repository on GitHub
 - [x] Create project structure in intellij and push
 - [x] Add link to list of team projects in student repo.
-- [ ] Complete Problem Statement
+- [x] Complete Problem Statement
 - [x] Create project plan
 - [ ] Create database
 - [ ] Create welcome page AWS

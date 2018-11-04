@@ -16,15 +16,13 @@ with the way to enjoy your hobbies.
 
 * RESTful API that returns response in different formats like JSON, XML, HTML and plain text
 * Hibernate
+* Log4j
+* JUnit Testing
 
 
 
 ### Design
 
-* [Screen Design](DesignDocuments/Screens.md)
-* [Application Flow](DesignDocuments/applicationFlow.md)
 * [Database Design](DesignDocuments/databaseDiagram.png)
 
 ### [Project Plan](ProjectPlan.md)
-
-### [Development Journal](Journal.md)
