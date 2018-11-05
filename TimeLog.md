@@ -6,3 +6,4 @@
 |11/03/2018|Importing csv to the created database. Creating settleup entity. Unit test get by id. | 3 | | Sasha |
 |11/03/2018|Updated README, deployed to AWS, created Web Service stubs, created logo, updated home page. |3| |Stas|
 |11/04/2018|Adding unit test to get city name bases on the number of bedrooms, activity, and monthly rent.|1| |Sasha|
+| 11/4/18 | working on SettleUpService, local copy of database | 1.5 | Keith |
