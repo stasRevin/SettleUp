@@ -1,11 +1,13 @@
 package com.settleup.entity;
 
+import com.settleUpService.SettleUpService;
 import com.settleup.persistence.GenericDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,5 +45,13 @@ class SettleUpTest {
 
 
     }
+/*
+    @Test
+    void settleUpServiceTest() {
 
+        SettleUpService service = new SettleUpService();
+        Response response = service.getAll();
+        List<SettleUp> results = (List<SettleUp>)response.getEntity();
+    }
+*/
 }

@@ -3,6 +3,7 @@ package com.settleup.persistence;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -116,7 +117,7 @@ public class GenericDAO<T> {
 
 
 
-    public List<T> getElementsAndClause(String fieldNameOne, int fieldValueOne, String fieldNameTow, String fieldValueTow) {
+    public List<T> getElementsAndClause(String fieldNameOne, int fieldValueOne, String fieldNameTwo, String fieldValueTwo) {
 
         Session session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -125,7 +126,7 @@ public class GenericDAO<T> {
         Root<T> root = query.from(type);
         Predicate predicate = builder.and(
                 builder.equal(root.get(fieldNameOne), fieldValueOne),
-                builder.equal(root.get(fieldNameTow), fieldValueTow)
+                builder.equal(root.get(fieldNameTwo), fieldValueTwo)
         );
 
         query.where(predicate);
@@ -134,8 +135,22 @@ public class GenericDAO<T> {
         return element;
 
     }
+/*
+    public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByProperty, String searchByValue) {
+
+        Session session = getSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery query = builder.createQuery(type);
+
+        Root<T> root = query.from(type);
+
+        Predicate predicate = builder.between(root.get(searchByProperty), minValue, maxValue);
 
 
+
+    }
+
+*/
 
     private Session getSession() {
 
