@@ -45,13 +45,12 @@ class SettleUpTest {
 
 
     }
-/*
-    @Test
-    void settleUpServiceTest() {
 
-        SettleUpService service = new SettleUpService();
-        Response response = service.getAll();
-        List<SettleUp> results = (List<SettleUp>)response.getEntity();
+    @Test
+    void getElementsByRangeAndValuesSuccess() {
+
+       List<SettleUp> results = genericDAOSettleUp.getElementsByRangeAndValues(600, 1500, "rent_0", "county", "Weston County");
+
+       assertEquals(1, results.size());
     }
-*/
 }

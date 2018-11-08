@@ -131,26 +131,40 @@ public class GenericDAO<T> {
 
         query.where(predicate);
         List<T> element = session.createQuery(query).getResultList();
+        session.close();
 
         return element;
 
     }
-/*
-    public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByProperty, String searchByValue) {
+
+    public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByPropertyOne, String searchByPropertyTwo, String valueTwo) {
 
         Session session = getSession();
+        Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(type);
+        CriteriaQuery<T> query = builder.createQuery(type);
 
         Root<T> root = query.from(type);
 
-        Predicate predicate = builder.between(root.get(searchByProperty), minValue, maxValue);
+        Predicate predicateOne = builder.lessThanOrEqualTo(root.get(searchByPropertyOne), maxValue);
+        Predicate predicateTwo = builder.greaterThanOrEqualTo(root.get(searchByPropertyOne), minValue);
 
+        Predicate predicateThree = builder.equal(root.get(searchByPropertyTwo), valueTwo);
 
+        Predicate[] predicates = new Predicate[3];
+
+        predicates[0] = predicateOne;
+        predicates[1] = predicateTwo;
+        predicates[2] = predicateThree;
+        query.select(root).where(predicates);
+        List<T> elements = session.createQuery(query).getResultList();
+        transaction.commit();
+        session.close();
+
+        return  elements;
 
     }
 
-*/
 
     private Session getSession() {
 
