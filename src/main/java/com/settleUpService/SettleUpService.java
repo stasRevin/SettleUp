@@ -16,6 +16,7 @@ import java.util.List;
 @Path("/settleUpService")
 public class SettleUpService {
 
+    /**
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
     @Path("{rent}/{activities}/{numberOfBedrooms}")
@@ -32,13 +33,17 @@ public class SettleUpService {
         //query db
         //cast to object
 
+
+
         return Response.status(200).entity(results).build();
 
     }
+     */
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    public Response getAll() {
+    @Path("/json/{rent}/{activities}/{numberOfBedrooms}")
+    public Response getAllJson() {
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
 
@@ -53,4 +58,51 @@ public class SettleUpService {
 
 
 
+    @GET
+    @Produces({MediaType.APPLICATION_XML})
+    @Path("/xml/{rent}/{activities}/{numberOfBedrooms}")
+    public Response getAllXML() {
+
+        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+
+        List<SettleUp> results = dao.getAll();
+
+        //query db
+        //cast to object
+
+        return Response.status(200).entity(results).build();
+
+    }
+
+    @GET
+    @Produces({MediaType.TEXT_HTML})
+    @Path("/html/{rent}/{activities}/{numberOfBedrooms}")
+    public Response getAllHTML() {
+
+        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+
+        List<SettleUp> results = dao.getAll();
+
+        //query db
+        //cast to object
+
+        return Response.status(200).entity(results).build();
+
+    }
+
+    @GET
+    @Produces({MediaType.TEXT_PLAIN})
+    @Path("/text/{rent}/{activities}/{numberOfBedrooms}")
+    public Response getAllText() {
+
+        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+
+        List<SettleUp> results = dao.getAll();
+
+        //query db
+        //cast to object
+
+        return Response.status(200).entity(results).build();
+
+    }
 }
