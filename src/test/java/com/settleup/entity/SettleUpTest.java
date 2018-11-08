@@ -34,17 +34,6 @@ class SettleUpTest {
 
     }
 
-    @Test
-    void getByPropertyEqualSuccess() {
-
-        List<SettleUp> list = genericDAOSettleUp.getElementsAndClause("rent_0", 600, "activity", "running");
-        assertEquals(2, list.size());
-        assertEquals("running", list.get(0).getActivity());
-        assertEquals("Cameron County",list.get(0).getCity());
-        assertEquals("Hopkins County", list.get(1).getCity());
-
-
-    }
 
     @Test
     void getElementsByRangeAndValuesSuccess() {

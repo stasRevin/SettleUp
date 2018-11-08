@@ -42,15 +42,19 @@ public class SettleUpService {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
-    @Path("/json/{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAllJSON() {
+    @Path("/json/{rent}/{activity}/{numberOfBedrooms}")
+    public Response getAllJSON(@PathParam("rent") int rent,
+                               @PathParam("activity") String activity,
+                               @PathParam("numberOfBedrooms") int numberOfBedrooms) {
+
+        //get number of bedrooms column name
+        String numberOfBedroomsColumn = getNumberOfBedroomsColumn(numberOfBedrooms);
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+        int minimumPrice = rent - 500;
+        int maximumPrice = rent + 500;
 
-        List<SettleUp> results = dao.getAll();
-
-        //query db
-        //cast to object
+        List<SettleUp> results = dao.getElementsByRangeAndValues(minimumPrice, maximumPrice, numberOfBedroomsColumn, "activity", activity);
 
         return Response.status(200).entity(results).build();
 
@@ -104,5 +108,31 @@ public class SettleUpService {
 
         return Response.status(200).entity(results).build();
 
+    }
+
+    private String getNumberOfBedroomsColumn(int numberOfBedrooms) {
+
+        String columnName = "";
+
+        switch (numberOfBedrooms) {
+
+            case 0:
+                columnName = "rent_0";
+                break;
+            case 1:
+                columnName = "rent_1";
+                break;
+            case 2:
+                columnName = "rent_2";
+                break;
+            case 3:
+                columnName = "rent_3";
+                break;
+            case 4:
+                columnName = "rent_4";
+                break;
+        }
+
+        return columnName;
     }
 }
