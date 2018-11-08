@@ -43,15 +43,11 @@ public class SettleUpService {
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
 
         List<SettleUp> results = dao.getAll();
-        List<SettleUp> shortList = new ArrayList<>();
-
-        shortList.add(results.get(0));
-        shortList.add(results.get(1));
 
         //query db
         //cast to object
 
-        return Response.status(200).entity(shortList).build();
+        return Response.status(200).entity(results).build();
 
     }
 
