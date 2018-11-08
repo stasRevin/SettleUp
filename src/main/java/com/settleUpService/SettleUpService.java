@@ -43,7 +43,7 @@ public class SettleUpService {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/json/{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAllJson() {
+    public Response getAllJSON() {
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
 
