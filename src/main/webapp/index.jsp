@@ -91,23 +91,34 @@
                 <form class="form-horizontal" action="#">
                     <div class="form-group">
                         <label for="rent">Monthly Rent</label>
-                        <input type="text" class="form-control" name="activity" id="rent">
+                        <input type="text" class="form-control" name="monthlyRent" id="rent">
                     </div>
 
                     <div class="form-group">
                     <label for="bedrooms">Number of Bedrooms:</label>
                         <select class="form-control" id="bedrooms" name="numberOfBedrooms">
-                            <option>0</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option value="rent_0">0</option>
+                            <option value="rent_1">1</option>
+                            <option value="rent_2">2</option>
+                            <option value="rent_3">3</option>
+                            <option value="rent_4">4</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="activity">Your Favorite Activity</label>
                         <input type="text" class="form-control" name="activity" id="activity">
                     </div>
+
+                    <div class="form-group">
+                        <label for="returnType">Consume with:</label>
+                        <select class="form-control" id="returnType" name="returnType">
+                            <option value="json">Json</option>
+                            <option value="xml">XML</option>
+                            <option value="text">Text</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <br/>
