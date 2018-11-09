@@ -8,9 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class GenericDAO<T> {
@@ -61,6 +59,7 @@ public class GenericDAO<T> {
         return list;
 
     }
+
 
     /**
      * update user

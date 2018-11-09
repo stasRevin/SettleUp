@@ -1,14 +1,14 @@
 package com.settleup.entity;
 
-import com.settleUpService.SettleUpService;
 import com.settleup.persistence.GenericDAO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.ws.rs.core.Response;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,17 +28,33 @@ class SettleUpTest {
     @Test
     void getPropertyByIdSuccess() {
 
-        SettleUp retriedData = genericDAOSettleUp.getById(1);
+        SettleUp retriedData = genericDAOSettleUp.getById(51);
         assertNotNull(retriedData);
-        assertEquals("Callahan County", retriedData.getCity());
+        assertEquals("Deschutes County", retriedData.getCity());
 
+    }
+
+    @Test
+    void getAllSuccess() {
+
+        Set<String> activitySet = new HashSet<>();
+        List<SettleUp> allData =  genericDAOSettleUp.getAll();
+
+        for ( SettleUp list : allData) {
+            activitySet.add(list.getActivity());
+        }
+
+        System.out.println(activitySet);
+
+        assertEquals("Sports", allData.get(0).getActivity());
+        assertEquals(10, activitySet.size());
     }
 
 
     @Test
     void getElementsByRangeAndValuesSuccess() {
 
-       List<SettleUp> results = genericDAOSettleUp.getElementsByRangeAndValues(600, 1500, "rent_0", "county", "Weston County");
+       List<SettleUp> results = genericDAOSettleUp.getElementsByRangeAndValues(600, 1500, "rent_0", "county", "Cameron County");
 
        assertEquals(1, results.size());
     }

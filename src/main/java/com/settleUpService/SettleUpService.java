@@ -61,7 +61,7 @@ public class SettleUpService {
     }
 
 
-
+/*
     @GET
     @Produces({MediaType.APPLICATION_XML})
     @Path("/xml/{rent}/{activities}/{numberOfBedrooms}")
@@ -108,7 +108,7 @@ public class SettleUpService {
 
         return Response.status(200).entity(results).build();
 
-    }
+    }*/
 
     private String getNumberOfBedroomsColumn(int numberOfBedrooms) {
 

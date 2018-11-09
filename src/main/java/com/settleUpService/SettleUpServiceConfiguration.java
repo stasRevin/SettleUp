@@ -13,6 +13,7 @@ public class SettleUpServiceConfiguration extends Application {
 
         Set set = new HashSet<Class<?>>();
         set.add(SettleUpService.class);
+        set.add(SettleUpFormData.class);
 
         return set;
     }

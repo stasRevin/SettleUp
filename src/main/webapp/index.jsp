@@ -13,6 +13,8 @@
     <!-- Bootstrap core CSS -->
     <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
 
@@ -95,19 +97,22 @@
                     </div>
 
                     <div class="form-group">
-                    <label for="bedrooms">Number of Bedrooms:</label>
+                        <label for="bedrooms">Number of Bedrooms:</label>
                         <select class="form-control" id="bedrooms" name="numberOfBedrooms">
-                            <option value="rent_0">0</option>
-                            <option value="rent_1">1</option>
-                            <option value="rent_2">2</option>
-                            <option value="rent_3">3</option>
-                            <option value="rent_4">4</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
                         </select>
                     </div>
 
+
                     <div class="form-group">
-                        <label for="activity">Your Favorite Activity</label>
-                        <input type="text" class="form-control" name="activity" id="activity">
+                        <label for="returnType">Your Favorite Activity</label>
+                        <select class="form-control" id="activity" name="activity">
+                            <!-- dynamically generated with jquery and service -->
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -149,3 +154,33 @@
 </body>
 
 </html>
+
+<script>
+    $(document).ready(function () {
+
+        console.log('here');
+
+        $.get('http://localhost:8080/settleup/services/SettleUpFormData/', function () {
+
+        }).done(function (data) {
+
+            console.log(data);
+
+            var html = '';
+
+            for ( var i = 0; i < data.length; i ++ ) {
+
+                html += '<option value="' + data[i]+ '">' + data[i] + '</option>';
+
+            }
+
+            $('#activity').append(html);
+
+        }).fail(function (data) {
+            console.log("Error getting results " + data )
+        });
+
+    });
+
+
+</script>
