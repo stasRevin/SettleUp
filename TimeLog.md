@@ -8,4 +8,5 @@
 |11/04/2018|Adding unit test to get city name bases on the number of bedrooms, activity, and monthly rent.|1| |Sasha|
 | 11/4/18 | working on SettleUpService, local copy of database | 1.5 | Keith |
 | 11/5/18 | working on getting SettleUpService to take param and search database | 1.25 | Keith |
+|11/8/2018|Working on getting SettleUpFormData service to dynamically populate activities in the form.| 2.30| |Sasha|
 
