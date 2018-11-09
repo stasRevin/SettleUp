@@ -18,6 +18,8 @@
     <!-- Custom styles for this template -->
     <link href="css/shop-homepage.css" rel="stylesheet">
 
+    <script src="scripts/activities.js" rel="script"></script>
+
 </head>
 
 <body>
@@ -155,32 +157,3 @@
 
 </html>
 
-<script>
-    $(document).ready(function () {
-
-        console.log('here');
-
-        $.get('http://localhost:8080/settleup/services/SettleUpFormData/', function () {
-
-        }).done(function (data) {
-
-            console.log(data);
-
-            var html = '';
-
-            for ( var i = 0; i < data.length; i ++ ) {
-
-                html += '<option value="' + data[i]+ '">' + data[i] + '</option>';
-
-            }
-
-            $('#activity').append(html);
-
-        }).fail(function (data) {
-            console.log("Error getting results " + data )
-        });
-
-    });
-
-
-</script>

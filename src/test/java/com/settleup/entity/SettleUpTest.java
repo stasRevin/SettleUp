@@ -43,14 +43,10 @@ class SettleUpTest {
         for ( SettleUp list : allData) {
             activitySet.add(list.getActivity());
         }
-
-        System.out.println(activitySet);
-
         assertEquals("Sports", allData.get(0).getActivity());
         assertEquals(10, activitySet.size());
     }
-
-
+    
     @Test
     void getElementsByRangeAndValuesSuccess() {
 
