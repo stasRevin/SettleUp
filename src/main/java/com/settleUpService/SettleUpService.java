@@ -1,6 +1,7 @@
 package com.settleUpService;
 
 
+import com.settleup.entity.SearchResults;
 import com.settleup.entity.SettleUp;
 import com.settleup.persistence.GenericDAO;
 
@@ -12,33 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Path("/settleUpService")
 public class SettleUpService {
-
-    /**
-    @GET
-    @Produces({MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN})
-    @Path("{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAreasWithSimilarRentCostAndMatchingActivities(@PathParam("rent") int rent,
-                                                                     @PathParam("activities") List<String> activities,
-                                                                     @PathParam("numberOfBedrooms") int numberOfBedrooms) {
-        int minimumPrice = rent - 500;
-        int maximumPrice = rent + 500;
-
-        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-
-        List<SettleUp> results = dao.getAll();
-
-        //query db
-        //cast to object
-
-
-
-        return Response.status(200).entity(results).build();
-
-    }
-     */
 
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -47,66 +25,44 @@ public class SettleUpService {
                                @PathParam("activity") String activity,
                                @PathParam("numberOfBedrooms") int numberOfBedrooms) {
 
-        //get number of bedrooms column name
-        String numberOfBedroomsColumn = getNumberOfBedroomsColumn(numberOfBedrooms);
-
-        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-        int minimumPrice = rent - 500;
-        int maximumPrice = rent + 500;
-
-        List<SettleUp> results = dao.getElementsByRangeAndValues(minimumPrice, maximumPrice, numberOfBedroomsColumn, "activity", activity);
+        List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
 
         return Response.status(200).entity(results).build();
-
     }
 
 
 
     @GET
     @Produces({MediaType.APPLICATION_XML})
-    @Path("/xml/{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAllXML() {
+    @Path("/xml/{rent}/{activity}/{numberOfBedrooms}")
+    public Response getAllXML(@PathParam("rent") int rent,
+                              @PathParam("activity") String activity,
+                              @PathParam("numberOfBedrooms") int numberOfBedrooms) {
 
-        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
 
-        List<SettleUp> results = dao.getAll();
+        List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
 
-        //query db
-        //cast to object
+        SearchResults searchResults = new SearchResults();
+        searchResults.setSearchResults(results);
 
-        return Response.status(200).entity(results).build();
-
-    }
-
-    @GET
-    @Produces({MediaType.TEXT_HTML})
-    @Path("/html/{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAllHTML() {
-
-        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-
-        List<SettleUp> results = dao.getAll();
-
-        //query db
-        //cast to object
-
-        return Response.status(200).entity(results).build();
+        return Response.status(200).entity(searchResults).build();
 
     }
 
     @GET
     @Produces({MediaType.TEXT_PLAIN})
-    @Path("/text/{rent}/{activities}/{numberOfBedrooms}")
-    public Response getAllText() {
+    @Path("/text/{rent}/{activity}/{numberOfBedrooms}")
+    public Response getAllText(@PathParam("rent") int rent,
+                               @PathParam("activity") String activity,
+                               @PathParam("numberOfBedrooms") int numberOfBedrooms) {
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
 
-        List<SettleUp> results = dao.getAll();
+        List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
+        //Found the below method here https://stackoverflow.com/questions/599161/best-way-to-convert-an-arraylist-to-a-string
+        String returnText = results.stream().map(SettleUp::toString).collect(Collectors.joining(", "));
 
-        //query db
-        //cast to object
-
-        return Response.status(200).entity(results).build();
+        return Response.status(200).entity(returnText).build();
 
     }
 
@@ -135,4 +91,17 @@ public class SettleUpService {
 
         return columnName;
     }
+
+
+    private List<SettleUp> getDataFromDatabase(int rent, String activity, int numberOfBedrooms) {
+        String numberOfBedroomsColumn = getNumberOfBedroomsColumn(numberOfBedrooms);
+
+        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+
+        int minimumPrice = rent - 50;
+        int maximumPrice = rent + 50;
+
+        return dao.getElementsByRangeAndValues(minimumPrice, maximumPrice, numberOfBedroomsColumn, "activity", activity);
+    }
+
 }
