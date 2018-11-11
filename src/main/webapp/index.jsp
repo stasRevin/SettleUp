@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,6 +62,7 @@
         </div>
         <!-- /.col-lg-3 -->
 
+
         <div class="col-lg-9">
 
             <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
@@ -92,7 +94,7 @@
 
             <div class="row">
 
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="/settleup/areaSearch" method="POST">
                     <div class="form-group">
                         <label for="rent">Monthly Rent</label>
                         <input type="text" class="form-control" name="monthlyRent" id="rent">
@@ -131,6 +133,16 @@
                 <br/>
             </div>
             <!-- /.row -->
+
+            <div>
+                <table>
+                    <c:forEach var="city" items="${cities}">
+                        <tr>
+                            <td>${city.city}</td>
+                        </tr>
+                    </c:forEach>
+                </table>
+            </div>
 
         </div>
         <!-- /.col-lg-9 -->
