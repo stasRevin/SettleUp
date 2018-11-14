@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function displayActivities() {
 
-    $.get('http://localhost:8080/settleup/services/SettleUpFormData/', function () {
+    $.get('http://18.216.201.147/settleup/services/SettleUpFormData/', function () {
 
     }).done(function (data) {
 
