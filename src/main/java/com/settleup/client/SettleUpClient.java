@@ -25,5 +25,8 @@ public class SettleUpClient {
         return results;
     }
 
+    //public List<XMLResult> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
+
+    //}
 
 }
