@@ -31,6 +31,5 @@ public class SettleUpFormData {
         }
 
         return Response.status(200).entity(activities).build();
-
     }
 }

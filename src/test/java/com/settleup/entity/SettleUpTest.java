@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SettleUpTest {
 
-    private final Logger logger = LogManager.getLogger(this.getClass());
+    //private final Logger logger = LogManager.getLogger(this.getClass());
 
     GenericDAO<SettleUp> genericDAOSettleUp;
 

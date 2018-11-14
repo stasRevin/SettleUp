@@ -10,4 +10,6 @@
 | 11/5/18 | working on getting SettleUpService to take param and search database | 1.25 | Keith |
 |11/8/2018|Working on getting SettleUpFormData service to dynamically populate activities in the form.| 2.30| |Sasha|
 |11/8/2018|Added services to service JSON, XML and TXT requests. |1| |Stas|
+| 11/14/18 | Working on consuming json, xml | 2 | Keith |
+
 
