@@ -2,6 +2,8 @@ package com.settleup.client;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.sun.xml.internal.ws.encoding.xml.XMLMessage;
 import org.junit.jupiter.api.Test;
 import com.settleup.entity.SettleUp;
 
@@ -13,6 +15,9 @@ import javax.ws.rs.core.Response;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.stream.XMLInputFactory;
+import javax.xml.stream.XMLStreamReader;
+import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.List;
 import java.util.Set;
@@ -39,15 +44,20 @@ class SettleUpClientTest {
     public void testXML() throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("http://18.216.201.147:8080/settleup/services/settleUpService/xml/800/Sports/2");
-
         String response = target.request(MediaType.APPLICATION_XML).get(String.class);
 
-        JAXBContext jaxbContext = JAXBContext.newInstance(SettleUp.class);
-        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        XMLInputFactory factory = XMLInputFactory.newFactory();
+        XMLStreamReader streamReader = factory.createXMLStreamReader(new StringReader(response));
 
-        SettleUp results = (SettleUp)unmarshaller.unmarshal(new StringReader(response));
+        XmlMapper mapper = new XmlMapper();
 
-        assertEquals("???", response);
+        streamReader.next();
+
+        List<SettleUp> results = mapper.readValue(streamReader, new TypeReference<List<SettleUp>>(){});
+
+        streamReader.close();
+
+        assertEquals(630, results.get(0).getRent_1());
     }
 
 

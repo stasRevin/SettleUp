@@ -30,4 +30,5 @@ public class XMLResult {
 
     private String activity;
 
+
 }
