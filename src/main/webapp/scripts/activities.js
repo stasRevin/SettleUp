@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     displayActivities();
-
+console.log("after disply call");
 });
 
 function displayActivities() {
