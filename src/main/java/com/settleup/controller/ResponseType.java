@@ -23,26 +23,26 @@ import com.settleup.entity.SettleUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@WebServlet(
+@WebServlet(name = "ResponseType",
         urlPatterns = {"/responseType"}
 )
 public class ResponseType extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-    private SettleUpClient settleClient;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
-        Client client = ClientBuilder.newClient();
+       // Client client = ClientBuilder.newClient();
+        SettleUpClient settleClient = new SettleUpClient();
 
         String responseType = request.getParameter("returnType");
         int rent = Integer.parseInt(request.getParameter("monthlyRent"));
         String activity = request.getParameter("activity");
         int numberOfBedrooms = Integer.parseInt(request.getParameter("numberOfBedrooms"));
 
-        if ( responseType == "json") {
+        if ( responseType.equals("json")) {
             try {
 
                 List<SettleUp> results = settleClient.getJSONRestuls(rent, activity, numberOfBedrooms);
@@ -57,7 +57,7 @@ public class ResponseType extends HttpServlet {
                 logger.error(exception);
             }
 
-        } else if ( responseType == "xml") {
+        } else if ( responseType.equals("xml")) {
 
             try {
 

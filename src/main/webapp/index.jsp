@@ -89,7 +89,7 @@
 
             <div class="row">
 
-                <form class="form-horizontal" action="responseType" method="POST">
+                <form class="form-horizontal" action="/settleup/responseType" method="POST">
                     <div class="form-group">
                         <label for="rent">Monthly Rent</label>
                         <input type="text" class="form-control" name="monthlyRent" id="rent">
@@ -119,7 +119,6 @@
                         <select class="form-control" id="returnType" name="returnType">
                             <option value="json">Json</option>
                             <option value="xml">XML</option>
-                            <option value="text">Text</option>
                         </select>
                     </div>
 
