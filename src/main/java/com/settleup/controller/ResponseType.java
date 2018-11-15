@@ -17,6 +17,9 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.List;
+
+import com.settleup.client.SettleUpClient;
+import com.settleup.entity.SettleUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +29,7 @@ import org.apache.logging.log4j.Logger;
 public class ResponseType extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+    private SettleUpClient settleClient;
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,27 +38,40 @@ public class ResponseType extends HttpServlet {
         Client client = ClientBuilder.newClient();
 
         String responseType = request.getParameter("returnType");
-        String rent = request.getParameter("monthlyRent");
+        int rent = Integer.parseInt(request.getParameter("monthlyRent"));
         String activity = request.getParameter("activity");
-        String numberOfBedrooms = request.getParameter("numberOfBedrooms");
+        int numberOfBedrooms = Integer.parseInt(request.getParameter("numberOfBedrooms"));
 
-        String url = "http://18.216.201.147:8080/settleup/services/settleUpService/" + responseType + "/" + rent + "/" + activity + "/" + numberOfBedrooms;
+        if ( responseType == "json") {
+            try {
 
-        try {
+                List<SettleUp> results = settleClient.getJSONRestuls(rent, activity, numberOfBedrooms);
+                request.setAttribute("results", results);
 
-            WebTarget target = client.target(url);
-            String jsonResponse = target.request(MediaType.APPLICATION_JSON).get(String.class);
+                dispatcher = request.getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
 
-            ObjectMapper mapper = new ObjectMapper();
-            List<JSONResult> results = mapper.readValue(jsonResponse, new TypeReference<List<JSONResult>>(){});
+            } catch (IOException ioException) {
+                logger.error(ioException);
+            } catch (Exception exception) {
+                logger.error(exception);
+            }
 
-            request.setAttribute("results", results);
+        } else if ( responseType == "xml") {
 
-            dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+            try {
 
-        } catch (IOException ioException) {
-            logger.error(ioException);
+                List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
+                request.setAttribute("results", results);
+
+                dispatcher = request.getRequestDispatcher("/index.jsp");
+                dispatcher.forward(request, response);
+
+            } catch (IOException ioException) {
+                logger.error(ioException);
+            } catch (Exception exception) {
+                logger.error(exception);
+            }
         }
 
 
