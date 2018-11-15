@@ -32,6 +32,7 @@ public class SettleUpClient {
 
     public List<SettleUp> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
         Client client = ClientBuilder.newClient();
+
         WebTarget target = client.target("http://18.216.201.147:8080/settleup/services/settleUpService/xml/800/Sports/2");
         String response = target.request(MediaType.APPLICATION_XML).get(String.class);
 
