@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -88,7 +89,7 @@
 
             <div class="row">
 
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="responseType" method="POST">
                     <div class="form-group">
                         <label for="rent">Monthly Rent</label>
                         <input type="text" class="form-control" name="monthlyRent" id="rent">
@@ -127,6 +128,12 @@
                 <br/>
             </div>
             <!-- /.row -->
+
+            <div>
+                <c:forEach var="result" items="${results}">
+                    ${result.area}
+                </c:forEach>
+            </div>
 
         </div>
         <!-- /.col-lg-9 -->
