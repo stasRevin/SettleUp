@@ -43,8 +43,8 @@ class SettleUpTest {
         for ( SettleUp list : allData) {
             activitySet.add(list.getActivity());
         }
-        assertEquals("Art", allData.get(0).getActivity());
-        assertEquals(11, activitySet.size());
+        assertEquals("Sports", allData.get(0).getActivity());
+        assertEquals(10, activitySet.size());
     }
     
     @Test
