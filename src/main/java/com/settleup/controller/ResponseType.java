@@ -1,20 +1,13 @@
 package com.settleup.controller;
 
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.settleup.client.JSONResult;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.MediaType;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -23,6 +16,10 @@ import com.settleup.entity.SettleUp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Servlet to return service response based on the user selection.
+ */
+
 @WebServlet(name = "ResponseType",
         urlPatterns = {"/responseType"}
 )
@@ -30,50 +27,68 @@ public class ResponseType extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-
+    /**
+     * Method to retrieve city based on the user incoming input from the POST form
+     * method forwards result to the index page for display
+     * method validates user input
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
-       // Client client = ClientBuilder.newClient();
         SettleUpClient settleClient = new SettleUpClient();
 
         String responseType = request.getParameter("returnType");
-        int rent = Integer.parseInt(request.getParameter("monthlyRent"));
+        String rentString = request.getParameter("monthlyRent").trim();
         String activity = request.getParameter("activity");
         int numberOfBedrooms = Integer.parseInt(request.getParameter("numberOfBedrooms"));
 
-        if ( responseType.equals("json")) {
-            try {
 
-                List<SettleUp> results = settleClient.getJSONRestuls(rent, activity, numberOfBedrooms);
-                request.setAttribute("results", results);
+        if ( rentString.equals("")) {
 
-                dispatcher = request.getRequestDispatcher("/index.jsp");
-                dispatcher.forward(request, response);
+            request.setAttribute("form", "empty");
+            dispatcher = request.getRequestDispatcher("/index.jsp");
+            dispatcher.forward(request, response);
 
-            } catch (IOException ioException) {
-                logger.error(ioException);
-            } catch (Exception exception) {
-                logger.error(exception);
+        } else {
+
+            int rent = Integer.parseInt(rentString);
+            if ( responseType.equals("json")) {
+                try {
+
+                    List<SettleUp> results = settleClient.getJSONRestuls(rent, activity, numberOfBedrooms);
+                    request.setAttribute("results", results);
+
+                    dispatcher = request.getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
+
+                } catch (IOException ioException) {
+                    logger.error(ioException);
+                } catch (Exception exception) {
+                    logger.error(exception);
+                }
+
+            } else if ( responseType.equals("xml")) {
+
+                try {
+
+                    List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
+                    request.setAttribute("results", results);
+
+                    dispatcher = request.getRequestDispatcher("/index.jsp");
+                    dispatcher.forward(request, response);
+
+                } catch (IOException ioException) {
+                    logger.error(ioException);
+                } catch (Exception exception) {
+                    logger.error(exception);
+                }
             }
 
-        } else if ( responseType.equals("xml")) {
-
-            try {
-
-                List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
-                request.setAttribute("results", results);
-
-                dispatcher = request.getRequestDispatcher("/index.jsp");
-                dispatcher.forward(request, response);
-
-            } catch (IOException ioException) {
-                logger.error(ioException);
-            } catch (Exception exception) {
-                logger.error(exception);
-            }
         }
-
 
     }
 }

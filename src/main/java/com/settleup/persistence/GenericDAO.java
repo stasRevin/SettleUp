@@ -3,14 +3,18 @@ package com.settleup.persistence;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import javax.persistence.criteria.*;
 import java.util.*;
 
-
+/**
+ * Class to serve as database data retriever based on the passed parameters
+ * @author oponomarova
+ * @author srevin
+ * @param <T>
+ */
 public class GenericDAO<T> {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -23,6 +27,12 @@ public class GenericDAO<T> {
 
     }
 
+    /**
+     * Retrieves data based on the id value of the entity
+     * @param id
+     * @param <T>
+     * @return values based on id
+     */
     public <T>T getById(int id) {
 
         Session session = getSession();
@@ -34,18 +44,9 @@ public class GenericDAO<T> {
     }
 
     /**
-     * Delete a entity
-     * @param entity User to be deleted
+     * Get all data from the entity.
+     * @return result in the list
      */
-    public void delete(T entity) {
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(entity);
-        transaction.commit();
-        session.close();
-    }
-
-
     public List<T> getAll() {
 
         Session session = getSession();
@@ -62,46 +63,17 @@ public class GenericDAO<T> {
 
 
     /**
-     * update user
-     * @param entity  User to be inserted or updated
-     */
-    public int insert(T entity) {
-
-        logger.debug("type " + entity);
-
-        int id = 0;
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        id = (int)session.save(entity);
-        transaction.commit();
-        session.close();
-        return id;
-    }
-
-    /**
-     * update user
-     * @param entity  User to be inserted or updated
-     */
-    public void saveOrUpdate(T entity) {
-        Session session = getSession();
-        Transaction transaction = session.beginTransaction();
-        session.saveOrUpdate(entity);
-        transaction.commit();
-        session.close();
-    }
-
-    /**
-     * Get user by property (exact match)
-     * sample usage: getByPropertyEqual("lastName", "Curry")
+     * Get results by property (exact match)
+     * sample usage: getByPropertyEqual("activity", "reading")
      *
      * @param propertyName entity property to search by
      * @param value value of the property to search for
-     * @return list of users meeting the criteria search
+     * @return list of values meeting the criteria search
      */
     public List<T> getByPropertyEqual(String propertyName, String value) {
         Session session = getSession();
 
-        logger.debug("Searching for user with " + propertyName + " = " + value);
+        logger.debug("Searching for values with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
@@ -114,28 +86,16 @@ public class GenericDAO<T> {
     }
 
 
-
-
-    public List<T> getElementsAndClause(String fieldNameOne, int fieldValueOne, String fieldNameTwo, String fieldValueTwo) {
-
-        Session session = getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery query = builder.createQuery(type);
-
-        Root<T> root = query.from(type);
-        Predicate predicate = builder.and(
-                builder.equal(root.get(fieldNameOne), fieldValueOne),
-                builder.equal(root.get(fieldNameTwo), fieldValueTwo)
-        );
-
-        query.where(predicate);
-        List<T> element = session.createQuery(query).getResultList();
-        session.close();
-
-        return element;
-
-    }
-
+    /**
+     * gets the results based on the range parameters example between 20 and 30 and entities
+     * usage (600, 1500, "rent_0", "county", "Cameron County")
+     * @param minValue
+     * @param maxValue
+     * @param searchByPropertyOne
+     * @param searchByPropertyTwo
+     * @param valueTwo
+     * @return list of values based on the criteria
+     */
     public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByPropertyOne, String searchByPropertyTwo, String valueTwo) {
 
         Session session = getSession();
@@ -164,7 +124,10 @@ public class GenericDAO<T> {
 
     }
 
-
+    /**
+     * opens the session
+     * @return session
+     */
     private Session getSession() {
 
         return SessionFactoryProvider.getSessionFactory().openSession();

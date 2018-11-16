@@ -8,6 +8,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * Class to represent settleup entity.
+ * To get access via json, xml or text.
+ * @author oponomarova
+ * @author srevin
+ */
 @XmlRootElement(name = "areas")
 @Entity(name = "SettleUp")
 @Table(name = "area_search")

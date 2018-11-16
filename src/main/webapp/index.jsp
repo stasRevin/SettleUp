@@ -90,9 +90,16 @@
             <div class="row">
 
                 <form class="form-horizontal" action="/settleup/responseType" method="POST">
+
+                    <c:if test="${form == \"empty\"}">
+                        <div class="alert alert-danger">
+                            <h6>Please enter rent amount.</h6>
+                        </div>
+                    </c:if>
+
                     <div class="form-group">
                         <label for="rent">Monthly Rent</label>
-                        <input type="text" class="form-control" name="monthlyRent" id="rent">
+                        <input type="text" class="form-control" name="monthlyRent" id="rent" placeholder="rent amount">
                     </div>
 
                     <div class="form-group">
