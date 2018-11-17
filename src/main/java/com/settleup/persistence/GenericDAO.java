@@ -63,30 +63,6 @@ public class GenericDAO<T> {
 
 
     /**
-     * Get results by property (exact match)
-     * sample usage: getByPropertyEqual("activity", "reading")
-     *
-     * @param propertyName entity property to search by
-     * @param value value of the property to search for
-     * @return list of values meeting the criteria search
-     */
-    public List<T> getByPropertyEqual(String propertyName, String value) {
-        Session session = getSession();
-
-        logger.debug("Searching for values with " + propertyName + " = " + value);
-
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
-        query.select(root).where(builder.equal(root.get(propertyName), value));
-        List<T> entity = session.createQuery(query).getResultList();
-
-        session.close();
-        return entity;
-    }
-
-
-    /**
      * gets the results based on the range parameters example between 20 and 30 and entities
      * usage (600, 1500, "rent_0", "county", "Cameron County")
      * @param minValue
