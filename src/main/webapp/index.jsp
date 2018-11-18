@@ -147,6 +147,7 @@
                         <th>Rent 4 Rooms</th>
                         <th>Activities</th>
                     </thead>
+                    <tbody>
                 <c:forEach var="result" items="${results}">
                      <c:choose>
                         <c:when test="${empty result.errorMessage}">
@@ -166,6 +167,7 @@
                         </c:when>
                     </c:choose>
                 </c:forEach>
+                </tbody>
                 </table>
             </div>
 
@@ -189,7 +191,14 @@
 <!-- Bootstrap core JavaScript -->
 <script src="static/jquery/jquery.min.js"></script>
 <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+<script type="application/javascript">
+    $(document).ready(function () {
+        if ($('tbody').children().length === 0) {
+            console.log('here');
+            $('table').hide();
+        }
+    });
+</script>
 </body>
 
 </html>
