@@ -139,7 +139,7 @@
 
                 <table class="table">
                     <thead>
-                        <th>City</th>
+                        <th>Metro Area</th>
                         <th>Rent 0 Rooms</th>
                         <th>Rent 1 Room</th>
                         <th>Rent 2 Rooms</th>
