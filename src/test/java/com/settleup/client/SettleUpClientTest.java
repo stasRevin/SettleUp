@@ -3,12 +3,10 @@ package com.settleup.client;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import javassist.NotFoundException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.Test;
 import com.settleup.entity.SettleUp;
-import org.mockito.internal.matchers.Not;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -16,15 +14,21 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamReader;
-import java.io.IOException;
+
 import java.io.StringReader;
-import java.util.ArrayList;
+
 import java.util.List;
 
 import static javax.print.attribute.standard.ReferenceUriSchemesSupported.HTTP;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Test class to test service implementation. (Json, XML)
+ * Test exception handling.
+ * @kkoberle
+ * @oponomarova
+ */
 class SettleUpClientTest {
     private final Logger logger = LogManager.getLogger(this.getClass());
 

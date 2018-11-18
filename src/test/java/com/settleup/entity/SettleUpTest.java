@@ -11,7 +11,8 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Test class for the service
+ * Test class to test service DAO to get city based on id, to get all data,
+ * to get data based on the price range
  * @author oponomarova
  * @author srevin
  */
