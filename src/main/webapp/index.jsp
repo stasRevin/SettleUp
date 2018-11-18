@@ -158,7 +158,7 @@
                         <td>$ ${result.rent_2}</td>
                         <td>$ ${result.rent_3}</td>
                         <td>$ ${result.rent_4}</td>
-                        <td>$ ${result.activity}</td>
+                        <td>${result.activity}</td>
                         </tr>
                         </c:when>
                         <c:when test="${not empty result.errorMessage}">
