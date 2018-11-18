@@ -16,3 +16,5 @@
 | 11/17/18 | Working on displaying results in tables | .5 | Keith |
 |11/17/2018|Working on exception handling.|2||Sasha|
 | 11/14/18  | Working on display json, xml results with Sasha/Stas | 3 | Keith |
+|11/14/18| Working on displaying json, xml with Sasha and Keith |3| Stas|
+|11/17/18| Introducing exception handling |3| Stas |
