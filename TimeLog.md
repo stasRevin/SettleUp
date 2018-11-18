@@ -12,6 +12,12 @@
 |11/8/2018|Added services to service JSON, XML and TXT requests. |1| |Stas|
 | 11/14/18 | Working on consuming json, xml | 2 | Keith |
 |11/14/2018|Working on displaying json, xml results, debugging | 3 ||Sasha|
+| 11/14/18  | Working on display json, xml results with Sasha/Stas | 3 | Keith |
 |11/15/2018|Working on the javadoc, user data validation server, client side|2||Sasha|
+| 11/17/18 | Working on displaying results in tables | .5 | Keith |
+
+
+
+
 
 
