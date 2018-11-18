@@ -15,4 +15,4 @@
 |11/15/2018|Working on the javadoc, user data validation server, client side|2||Sasha|
 | 11/17/18 | Working on displaying results in tables | .5 | Keith |
 |11/17/2018|Working on exception handling.|2||Sasha|
-
+| 11/14/18  | Working on display json, xml results with Sasha/Stas | 3 | Keith |
