@@ -8,7 +8,7 @@ function displayActivities() {
 
     //18.216.201.147:8080
     //localhost:8080
-    $.get('http://18.216.201.147:8080/settleup/services/SettleUpFormData/', function () {
+    $.get('http://localhost:8080/settleup/services/SettleUpFormData/', function () {
 
     }).done(function (data) {
 

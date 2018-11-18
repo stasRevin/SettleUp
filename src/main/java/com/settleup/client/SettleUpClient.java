@@ -18,7 +18,7 @@ public class SettleUpClient {
 
     public List<SettleUp> getJSONRestuls(int rent, String activity, int numberBedrooms) throws Exception {
         Client client = ClientBuilder.newClient();
-        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/json/" + rent + "/" + activity + "/" + numberBedrooms;
+        String targetUrl = "http://localhost:8080/settleup/services/settleUpService/json/" + rent + "/" + activity + "/" + numberBedrooms;
         WebTarget target = client.target(targetUrl);
 
         String respone = target.request(MediaType.APPLICATION_JSON).get(String.class);
@@ -33,7 +33,7 @@ public class SettleUpClient {
     public List<SettleUp> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
         Client client = ClientBuilder.newClient();
 
-        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/xml/" + rent + "/" + activity + "/" + numberBedrooms;
+        String targetUrl = "http://localhost:8080/settleup/services/settleUpService/xml/" + rent + "/" + activity + "/" + numberBedrooms;
         WebTarget target = client.target(targetUrl);
         String response = target.request(MediaType.APPLICATION_XML).get(String.class);
 
