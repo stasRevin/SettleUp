@@ -89,7 +89,7 @@
 
             <div class="row">
 
-                <form class="form-horizontal" action="/settleup/responseType" method="POST">
+                <form class="form-horizontal" action="/settleup/responseServlet" method="POST">
 
                     <c:if test="${form == \"empty\"}">
                         <div class="alert alert-danger">
@@ -136,6 +136,7 @@
             <!-- /.row -->
 
             <div>
+
                 <table>
                     <thead>
                         <th>City</th>
@@ -147,15 +148,23 @@
                         <th>Activities</th>
                     </thead>
                 <c:forEach var="result" items="${results}">
-                    <tr>
-                    <td>${result.area}</td>
-                    <td>$ ${result.rent_0}</td>
-                    <td>$ ${result.rent_1}</td>
-                    <td>$ ${result.rent_2}</td>
-                    <td>$ ${result.rent_3}</td>
-                    <td>$ ${result.rent_4}</td>
-                    <td>$ ${result.activity}</td>
-                    </tr>
+                     <c:choose>
+                        <c:when test="${empty result.errorMessage}">
+                        <tr>
+                        <td>${result.area}</td>
+                        <td>$ ${result.rent_0}</td>
+                        <td>$ ${result.rent_1}</td>
+                        <td>$ ${result.rent_2}</td>
+                        <td>$ ${result.rent_3}</td>
+                        <td>$ ${result.rent_4}</td>
+                        <td>$ ${result.activity}</td>
+                        </tr>
+                        </c:when>
+                        <c:when test="${not empty result.errorMessage}">
+                            </table>
+                            <p>${result.errorMessage}</p>
+                        </c:when>
+                    </c:choose>
                 </c:forEach>
                 </table>
             </div>

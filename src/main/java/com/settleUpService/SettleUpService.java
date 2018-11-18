@@ -1,17 +1,15 @@
 package com.settleUpService;
 
 
-import com.settleup.entity.SearchResults;
-import com.settleup.entity.SettleUp;
+import com.settleup.entity.*;
 import com.settleup.persistence.GenericDAO;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Path("/settleUpService")
@@ -26,9 +24,43 @@ public class SettleUpService {
 
         List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
 
+        if (Objects.isNull(results)) {
+
+            return createErrorMessage(Response.Status.INTERNAL_SERVER_ERROR, "json");
+
+        } else if (results.size() == 0) {
+
+            return createErrorMessage(Response.Status.NOT_FOUND, "json");
+
+        }
+
         return Response.status(200).entity(results).build();
     }
 
+
+    private Response createErrorMessage(Response.Status statusInput, String responseType) {
+
+        Response.Status status = statusInput;
+
+        List<ErrorDescription> exceptions = new ArrayList<>();
+        ErrorDescription description = new ErrorDescription();
+        int statusCode = status.getStatusCode();
+        description.setErrorCode(statusCode + "");
+        description.setMessage(status.getReasonPhrase());
+        exceptions.add(description);
+        SettleUpException settleUpException = new SettleUpException();
+        settleUpException.setErrors(exceptions);
+        SettleUpExceptionMapper settleUpExceptionMapper = new SettleUpExceptionMapper();
+
+        if (responseType.equals("xml")) {
+
+            return settleUpExceptionMapper.toXMLResponse(settleUpException, statusCode);
+
+        }
+
+        return settleUpExceptionMapper.toJsonResponse(settleUpException, statusCode);
+
+    }
 
     @GET
     @Produces({MediaType.APPLICATION_XML})
@@ -39,6 +71,16 @@ public class SettleUpService {
 
 
         List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
+
+        if (Objects.isNull(results)) {
+
+            return createErrorMessage(Response.Status.INTERNAL_SERVER_ERROR, "xml");
+
+        } else if (results.size() == 0) {
+
+            return createErrorMessage(Response.Status.NOT_FOUND, "xml");
+
+        }
 
         SearchResults searchResults = new SearchResults();
         searchResults.setSearchResults(results);
@@ -95,11 +137,17 @@ public class SettleUpService {
         String numberOfBedroomsColumn = getNumberOfBedroomsColumn(numberOfBedrooms);
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-
+        List<SettleUp> results = null;
         int minimumPrice = rent - 50;
         int maximumPrice = rent + 50;
 
-        return dao.getElementsByRangeAndValues(minimumPrice, maximumPrice, numberOfBedroomsColumn, "activity", activity);
+        try {
+            results = dao.getElementsByRangeAndValues(minimumPrice, maximumPrice, numberOfBedroomsColumn, "activity", activity);
+        } catch (Exception exception) {
+
+            return null;
+        }
+        return results;
     }
 
 }

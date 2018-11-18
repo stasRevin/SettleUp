@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.settleup.client.SettleUpClient;
@@ -20,10 +21,10 @@ import org.apache.logging.log4j.Logger;
  * Servlet to return service response based on the user selection.
  */
 
-@WebServlet(name = "ResponseType",
-        urlPatterns = {"/responseType"}
+@WebServlet(name = "ResponseServlet",
+        urlPatterns = {"/responseServlet"}
 )
-public class ResponseType extends HttpServlet {
+public class ResponseServlet extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -59,7 +60,8 @@ public class ResponseType extends HttpServlet {
             if ( responseType.equals("json")) {
                 try {
 
-                    List<SettleUp> results = settleClient.getJSONRestuls(rent, activity, numberOfBedrooms);
+                    List<SettleUp> results = settleClient.getJSONResults(rent, activity, numberOfBedrooms);
+
                     request.setAttribute("results", results);
 
                     dispatcher = request.getRequestDispatcher("/index.jsp");
