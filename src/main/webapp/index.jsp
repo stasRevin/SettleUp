@@ -136,9 +136,26 @@
             <!-- /.row -->
 
             <div>
+                <table>
+                    <thead>
+                        <th>City</th>
+                        <th>Rent 0 Rooms</th>
+                        <th>Rent 1 Room</th>
+                        <th>Rent 2 Rooms</th>
+                        <th>Rent 3 Rooms</th>
+                        <th>Rent 4 Rooms</th>
+                        <th>Activities</th>
+                    </thead>
                 <c:forEach var="result" items="${results}">
-                    ${result.area}
+                    <tr>${result.area}</tr>
+                    <tr>$ ${result.rent_0}</tr>
+                    <tr>$ ${result.rent_1}</tr>
+                    <tr>$ ${result.rent_2}</tr>
+                    <tr>$ ${result.rent_3}</tr>
+                    <tr>$ ${result.rent_4}</tr>
+                    <tr>$ ${result.activity}</tr>
                 </c:forEach>
+                </table>
             </div>
 
         </div>
