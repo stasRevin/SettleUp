@@ -147,13 +147,15 @@
                         <th>Activities</th>
                     </thead>
                 <c:forEach var="result" items="${results}">
-                    <tr>${result.area}</tr>
-                    <tr>$ ${result.rent_0}</tr>
-                    <tr>$ ${result.rent_1}</tr>
-                    <tr>$ ${result.rent_2}</tr>
-                    <tr>$ ${result.rent_3}</tr>
-                    <tr>$ ${result.rent_4}</tr>
-                    <tr>$ ${result.activity}</tr>
+                    <tr>
+                    <td>${result.area}</td>
+                    <td>$ ${result.rent_0}</td>
+                    <td>$ ${result.rent_1}</td>
+                    <td>$ ${result.rent_2}</td>
+                    <td>$ ${result.rent_3}</td>
+                    <td>$ ${result.rent_4}</td>
+                    <td>$ ${result.activity}</td>
+                    </tr>
                 </c:forEach>
                 </table>
             </div>
