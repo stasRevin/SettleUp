@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author oponomarova
  * @author srevin
  */
-@XmlRootElement(name = "areas")
 @Entity(name = "SettleUp")
 @Table(name = "area_search")
 @Data
@@ -62,6 +61,10 @@ public class SettleUp {
     @XmlTransient
     @Column(name = "activity")
     private String activity;
+
+    @XmlTransient
+    @Transient
+    private String errorMessage;
 
 
     public SettleUp() {
@@ -161,4 +164,13 @@ public class SettleUp {
     public void setActivity(String activity) {
         this.activity = activity;
     }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
 }

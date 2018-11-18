@@ -89,7 +89,7 @@
 
             <div class="row">
 
-                <form class="form-horizontal" action="/settleup/responseType" method="POST">
+                <form class="form-horizontal" action="/settleup/responseServlet" method="POST">
 
                     <c:if test="${form == \"empty\"}">
                         <div class="alert alert-danger">
@@ -137,7 +137,14 @@
 
             <div>
                 <c:forEach var="result" items="${results}">
-                    ${result.area}
+                    <c:choose>
+                        <c:when test="${not empty result.errorMessage}">
+                            ${result.errorMessage}
+                        </c:when>
+                        <c:otherwise>
+                            ${result.area}
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </div>
 

@@ -7,7 +7,6 @@ import com.settleup.persistence.GenericDAO;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,34 +24,43 @@ public class SettleUpService {
 
         List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
 
-
         if (Objects.isNull(results)) {
 
-            Response.Status status = Response.Status.INTERNAL_SERVER_ERROR;
-            List<ErrorDescription> exceptions = new ArrayList<>();
-            ErrorDescription description = new ErrorDescription();
-            description.setErrorCode(status.getStatusCode() + "");
-            description.setMessage(status.getReasonPhrase());
-            exceptions.add(description);
-            ServerSideException serverSideException = new ServerSideException(exceptions);
-            ServerSideExceptionMapper serverSideExceptionMapper = new ServerSideExceptionMapper();
-            return serverSideExceptionMapper.toResponse(serverSideException);
+            return createErrorMessage(Response.Status.INTERNAL_SERVER_ERROR, "json");
 
         } else if (results.size() == 0) {
 
-            Response.Status status = Response.Status.NOT_FOUND;
-            List<ErrorDescription> exceptions = new ArrayList<>();
-            ErrorDescription description = new ErrorDescription();
-            description.setErrorCode(status.getStatusCode() + "");
-            description.setMessage(status.getReasonPhrase());
-            exceptions.add(description);
-            InvalidInputException invalidInputException = new InvalidInputException(exceptions);
-            InvalidInputExceptionMapper mapper = new InvalidInputExceptionMapper();
-            return mapper.toResponse(invalidInputException);
+            return createErrorMessage(Response.Status.NOT_FOUND, "json");
+
         }
+
         return Response.status(200).entity(results).build();
     }
 
+
+    private Response createErrorMessage(Response.Status statusInput, String responseType) {
+
+        Response.Status status = statusInput;
+
+        List<ErrorDescription> exceptions = new ArrayList<>();
+        ErrorDescription description = new ErrorDescription();
+        int statusCode = status.getStatusCode();
+        description.setErrorCode(statusCode + "");
+        description.setMessage(status.getReasonPhrase());
+        exceptions.add(description);
+        SettleUpException settleUpException = new SettleUpException();
+        settleUpException.setErrors(exceptions);
+        SettleUpExceptionMapper settleUpExceptionMapper = new SettleUpExceptionMapper();
+
+        if (responseType.equals("xml")) {
+
+            return settleUpExceptionMapper.toXMLResponse(settleUpException, statusCode);
+
+        }
+
+        return settleUpExceptionMapper.toJsonResponse(settleUpException, statusCode);
+
+    }
 
     @GET
     @Produces({MediaType.APPLICATION_XML})
@@ -63,6 +71,16 @@ public class SettleUpService {
 
 
         List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
+
+        if (Objects.isNull(results)) {
+
+            return createErrorMessage(Response.Status.INTERNAL_SERVER_ERROR, "xml");
+
+        } else if (results.size() == 0) {
+
+            return createErrorMessage(Response.Status.NOT_FOUND, "xml");
+
+        }
 
         SearchResults searchResults = new SearchResults();
         searchResults.setSearchResults(results);
