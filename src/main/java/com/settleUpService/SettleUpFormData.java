@@ -29,14 +29,24 @@ public class SettleUpFormData {
     public Response getAllJSON() {
 
 
-        GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-        List<SettleUp> results = dao.getAll();
-        Set<String> activities = new HashSet<>();
+        try {
 
-        for( SettleUp set : results ) {
-            activities.add(set.getActivity());
+            GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
+            List<SettleUp> results = dao.getAll();
+            Set<String> activities = new HashSet<>();
+
+
+            for( SettleUp set : results ) {
+                activities.add(set.getActivity());
+            }
+
+            return Response.status(200).entity(activities).build();
+
+        } catch (Exception exception) {
+            return Response.status(Response.Status.NOT_FOUND).entity("Error Displaying Activities").build();
         }
-
-        return Response.status(200).entity(activities).build();
     }
 }
+
+
+
