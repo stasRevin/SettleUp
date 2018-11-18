@@ -137,7 +137,7 @@
 
             <div>
 
-                <table>
+                <table class="table">
                     <thead>
                         <th>City</th>
                         <th>Rent 0 Rooms</th>
