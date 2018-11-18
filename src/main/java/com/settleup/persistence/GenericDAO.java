@@ -1,8 +1,5 @@
 package com.settleup.persistence;
 
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -17,14 +14,15 @@ import java.util.*;
  */
 public class GenericDAO<T> {
 
-    private final Logger logger = LogManager.getLogger(this.getClass());
     private Class<T> type;
-    private Class<T> entity;
 
+    /**
+     * Constructor for the the provided type.
+     * @param type
+     */
     public GenericDAO(Class<T> type) {
 
         this.type = type;
-
     }
 
     /**
@@ -38,7 +36,6 @@ public class GenericDAO<T> {
         Session session = getSession();
         T entity = (T)session.get(type, id);
         session.close();
-
         return entity;
 
     }
@@ -51,19 +48,15 @@ public class GenericDAO<T> {
 
         Session session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-
         CriteriaQuery<T> query = builder.createQuery(type);
         Root<T> root = query.from(type);
         List<T> list = session.createQuery(query).getResultList();
-
         session.close();
         return list;
-
     }
 
-
     /**
-     * gets the results based on the range parameters example between 20 and 30 and entities
+     * Gets the results based on the range parameters example between 20 and 30 and entities
      * usage (600, 1500, "rent_0", "county", "Cameron County")
      * @param minValue
      * @param maxValue
@@ -72,22 +65,18 @@ public class GenericDAO<T> {
      * @param valueTwo
      * @return list of values based on the criteria
      */
-    public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByPropertyOne, String searchByPropertyTwo, String valueTwo) {
+    public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByPropertyOne,
+                                               String searchByPropertyTwo, String valueTwo) {
 
         Session session = getSession();
         Transaction transaction = session.beginTransaction();
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<T> query = builder.createQuery(type);
-
         Root<T> root = query.from(type);
-
         Predicate predicateOne = builder.lessThanOrEqualTo(root.get(searchByPropertyOne), maxValue);
         Predicate predicateTwo = builder.greaterThanOrEqualTo(root.get(searchByPropertyOne), minValue);
-
         Predicate predicateThree = builder.equal(root.get(searchByPropertyTwo), valueTwo);
-
         Predicate[] predicates = new Predicate[3];
-
         predicates[0] = predicateOne;
         predicates[1] = predicateTwo;
         predicates[2] = predicateThree;
@@ -97,17 +86,15 @@ public class GenericDAO<T> {
         session.close();
 
         return  elements;
-
     }
 
     /**
-     * opens the session
+     * Opens the session
      * @return session
      */
     private Session getSession() {
 
         return SessionFactoryProvider.getSessionFactory().openSession();
-
     }
 
 }

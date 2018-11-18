@@ -7,7 +7,10 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ * This is the ErrorDescription class designed to store the description of the service error.
+ * @author srevin
+ */
 public class ErrorDescription {
 
     @JsonProperty
@@ -17,29 +20,36 @@ public class ErrorDescription {
     @JsonProperty
     private String message;
 
+    /**
+     * This method returns the error code.
+     * @return errorCode
+     */
     @XmlElement
     public String getErrorCode() {
         return errorCode;
     }
 
+    /**
+     * This method sets value of the error code.
+     * @param errorCode
+     */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
     }
 
-    @XmlElement
-    public String getField() {
-        return field;
-    }
-
-    public void setField(String field) {
-        this.field = field;
-    }
-
+    /**
+     * This method returns the error message.
+     * @return message
+     */
     @XmlElement
     public String getMessage() {
         return message;
     }
 
+    /**
+     * This method sets the value of the error message.
+     * @param message
+     */
     public void setMessage(String message) {
         this.message = message;
     }

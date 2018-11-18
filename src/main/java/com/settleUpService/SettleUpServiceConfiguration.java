@@ -7,6 +7,7 @@ import javax.ws.rs.core.Application;
 
 /**
  * Class to get access to the service classes that produce the search results
+ * @author srevin
  */
 @ApplicationPath("/services")
 public class SettleUpServiceConfiguration extends Application {

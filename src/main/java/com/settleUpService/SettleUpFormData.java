@@ -28,7 +28,6 @@ public class SettleUpFormData {
     @Produces({MediaType.APPLICATION_JSON})
     public Response getAllJSON() {
 
-
         try {
 
             GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);

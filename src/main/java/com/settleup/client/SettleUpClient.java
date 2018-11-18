@@ -16,12 +16,25 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This is the SettleUpClient designed to consume the application's service to get apartment search results
+ * in either XML or JSON format.
+ * @author kkoberle
+ */
 public class SettleUpClient {
 
-
+    /**
+     * This method produces JSON results.
+     * @param rent
+     * @param activity
+     * @param numberBedrooms
+     * @return results The list of the apartment search results.
+     * @throws Exception
+     */
     public List<SettleUp> getJSONResults(int rent, String activity, int numberBedrooms) throws Exception {
 
-        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/json/" + rent + "/" + activity + "/" + numberBedrooms;
+        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/json/"
+                + rent + "/" + activity + "/" + numberBedrooms;
         List<SettleUp> results = new ArrayList<>();
         String response = getResponse(MediaType.APPLICATION_JSON, targetUrl, results);
 
@@ -40,14 +53,13 @@ public class SettleUpClient {
      * @param rent
      * @param activity
      * @param numberBedrooms
-     * @return
+     * @return results The list of the apartment search results.
      * @throws Exception
      */
     public List<SettleUp> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
 
-
-        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/xml/" + rent + "/" + activity + "/" + numberBedrooms;
-
+        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/xml/"
+                + rent + "/" + activity + "/" + numberBedrooms;
         List<SettleUp> results = new ArrayList<>();
         String response = getResponse(MediaType.APPLICATION_XML, targetUrl, results);
 
@@ -56,18 +68,21 @@ public class SettleUpClient {
 
         XMLInputFactory factory = XMLInputFactory.newFactory();
         XMLStreamReader streamReader = factory.createXMLStreamReader(new StringReader(response));
-
         XmlMapper mapper = new XmlMapper();
-
         streamReader.next();
-
         results = mapper.readValue(streamReader, new TypeReference<List<SettleUp>>(){});
-
         streamReader.close();
 
         return results;
     }
 
+    /**
+     * This method produces the response from the service.
+     * @param mediaType
+     * @param targetUrl
+     * @param settleUpList
+     * @return response
+     */
     private String getResponse(String mediaType, String targetUrl, List<SettleUp> settleUpList) {
 
         Client client = ClientBuilder.newClient();
@@ -85,8 +100,6 @@ public class SettleUpClient {
         }
 
         return response;
-
     }
-
 
 }

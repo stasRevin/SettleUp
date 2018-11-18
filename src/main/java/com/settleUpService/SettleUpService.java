@@ -12,9 +12,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * This is SettleUpService class designed to serve as a RESTful service resource for the application. This service
+ * takes rent price, type of recreational activity and a number of bedrooms for an apartment to produce a list
+ * of cities featuring provided by the user activities where one can find a similar type of apartment\
+ * with a similar monthly rental price.
+ * @author srevin
+ */
 @Path("/settleUpService")
 public class SettleUpService {
 
+    /**
+     * This method produces JSON response
+     * @param rent
+     * @param activity
+     * @param numberOfBedrooms
+     * @return JSON response
+     */
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     @Path("/json/{rent}/{activity}/{numberOfBedrooms}")
@@ -37,7 +51,12 @@ public class SettleUpService {
         return Response.status(200).entity(results).build();
     }
 
-
+    /**
+     * This method creates a service error message for both JSON and XML output formats.
+     * @param statusInput
+     * @param responseType
+     * @return response with a specified error message
+     */
     private Response createErrorMessage(Response.Status statusInput, String responseType) {
 
         Response.Status status = statusInput;
@@ -62,6 +81,14 @@ public class SettleUpService {
 
     }
 
+
+    /**
+     * This method produces an XML response.
+     * @param rent
+     * @param activity
+     * @param numberOfBedrooms
+     * @return XML response
+     */
     @GET
     @Produces({MediaType.APPLICATION_XML})
     @Path("/xml/{rent}/{activity}/{numberOfBedrooms}")
@@ -89,6 +116,13 @@ public class SettleUpService {
 
     }
 
+    /**
+     * This method produces a plain text response.
+     * @param rent
+     * @param activity
+     * @param numberOfBedrooms
+     * @return Plain text response
+     */
     @GET
     @Produces({MediaType.TEXT_PLAIN})
     @Path("/text/{rent}/{activity}/{numberOfBedrooms}")
@@ -97,7 +131,6 @@ public class SettleUpService {
                                @PathParam("numberOfBedrooms") int numberOfBedrooms) {
 
         GenericDAO<SettleUp> dao = new GenericDAO<>(SettleUp.class);
-
         List<SettleUp> results = getDataFromDatabase(rent, activity, numberOfBedrooms);
         //Found the below method here https://stackoverflow.com/questions/599161/best-way-to-convert-an-arraylist-to-a-string
         String returnText = results.stream().map(SettleUp::toString).collect(Collectors.joining(", "));
@@ -106,6 +139,11 @@ public class SettleUpService {
 
     }
 
+    /**
+     * This method returns the name of the column that lists rent prices for the specified number of bedrooms.
+     * @param numberOfBedrooms
+     * @return columnName
+     */
     private String getNumberOfBedroomsColumn(int numberOfBedrooms) {
 
         String columnName = "";
@@ -132,7 +170,13 @@ public class SettleUpService {
         return columnName;
     }
 
-
+    /**
+     * This method retrieves required data from the database.
+     * @param rent
+     * @param activity
+     * @param numberOfBedrooms
+     * @return results The list of the results found.
+     */
     private List<SettleUp> getDataFromDatabase(int rent, String activity, int numberOfBedrooms) {
         String numberOfBedroomsColumn = getNumberOfBedroomsColumn(numberOfBedrooms);
 

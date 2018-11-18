@@ -19,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 
 /**
  * Servlet to return service response based on the user selection.
+ * @author oponomarova
  */
 
 @WebServlet(name = "ResponseServlet",
@@ -27,7 +28,6 @@ import org.apache.logging.log4j.Logger;
 public class ResponseServlet extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-
     /**
      * Method to retrieve city based on the user incoming input from the POST form
      * method forwards result to the index page for display
@@ -37,7 +37,8 @@ public class ResponseServlet extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
         RequestDispatcher dispatcher;
         SettleUpClient settleClient = new SettleUpClient();
@@ -46,7 +47,6 @@ public class ResponseServlet extends HttpServlet {
         String rentString = request.getParameter("monthlyRent").trim();
         String activity = request.getParameter("activity");
         int numberOfBedrooms = Integer.parseInt(request.getParameter("numberOfBedrooms"));
-
 
         if ( rentString.equals("")) {
 
@@ -61,9 +61,7 @@ public class ResponseServlet extends HttpServlet {
                 try {
 
                     List<SettleUp> results = settleClient.getJSONResults(rent, activity, numberOfBedrooms);
-
                     request.setAttribute("results", results);
-
                     dispatcher = request.getRequestDispatcher("/index.jsp");
                     dispatcher.forward(request, response);
 
@@ -76,7 +74,6 @@ public class ResponseServlet extends HttpServlet {
             } else if ( responseType.equals("xml")) {
 
                 try {
-
                     List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
                     request.setAttribute("results", results);
 
@@ -89,8 +86,6 @@ public class ResponseServlet extends HttpServlet {
                     logger.error(exception);
                 }
             }
-
         }
-
     }
 }

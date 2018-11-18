@@ -8,6 +8,10 @@ import java.util.List;
 
 @XmlRootElement(name = "searchResults")
 @Data
+/**
+ * This is the SearchResults class designed to store the results of the apartment search.
+ * @author srevin
+ */
 public class SearchResults {
 
     @JsonProperty("searchResults")
