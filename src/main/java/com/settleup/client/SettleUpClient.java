@@ -18,9 +18,10 @@ import java.util.List;
 
 public class SettleUpClient {
 
+
     public List<SettleUp> getJSONResults(int rent, String activity, int numberBedrooms) throws Exception {
 
-        String targetUrl = "http://localhost:8080/settleup/services/settleUpService/json/" + rent + "/" + activity + "/" + numberBedrooms;
+        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/json/" + rent + "/" + activity + "/" + numberBedrooms;
         List<SettleUp> results = new ArrayList<>();
         String response = getResponse(MediaType.APPLICATION_JSON, targetUrl, results);
 
@@ -34,10 +35,18 @@ public class SettleUpClient {
         return results;
     }
 
+    /**
+     * This methods produces results in XML format
+     * @param rent
+     * @param activity
+     * @param numberBedrooms
+     * @return
+     * @throws Exception
+     */
     public List<SettleUp> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
 
 
-        String targetUrl = "http://localhost:8080/settleup/services/settleUpService/xml/" + rent + "/" + activity + "/" + numberBedrooms;
+        String targetUrl = "http://18.216.201.147:8080/settleup/services/settleUpService/xml/" + rent + "/" + activity + "/" + numberBedrooms;
 
         List<SettleUp> results = new ArrayList<>();
         String response = getResponse(MediaType.APPLICATION_XML, targetUrl, results);
