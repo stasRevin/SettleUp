@@ -50,6 +50,16 @@ class SettleUpClientTest {
         assertEquals(630, results.get(0).getRent_1());
     }
 
+    @Test
+    public void testText() {
+
+        Client client = ClientBuilder.newClient();
+        WebTarget target = client.target("http://18.216.201.147:8080/settleup/services/settleUpService/text/800/Sports/2");
+
+        String response = target.request(MediaType.TEXT_PLAIN).get(String.class);
+
+    }
+
 
     /**
      * Method to test service to return xml object with the rent price

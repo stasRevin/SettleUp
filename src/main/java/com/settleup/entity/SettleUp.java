@@ -2,6 +2,7 @@ package com.settleup.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,6 +17,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author oponomarova
  * @author srevin
  */
+@Data
 @Entity(name = "SettleUp")
 @Table(name = "area_search")
 public class SettleUp {
