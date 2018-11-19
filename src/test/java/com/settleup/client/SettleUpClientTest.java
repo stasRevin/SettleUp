@@ -30,8 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
  * @oponomarova
  */
 class SettleUpClientTest {
-    private final Logger logger = LogManager.getLogger(this.getClass());
 
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * Method to test service to return json object with the rent price
@@ -50,6 +50,9 @@ class SettleUpClientTest {
         assertEquals(630, results.get(0).getRent_1());
     }
 
+    /**
+     * This method tests whether the service returns the output in the text format.
+     */
     @Test
     public void testText() {
 
