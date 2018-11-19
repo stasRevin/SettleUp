@@ -57,6 +57,7 @@ class SettleUpClientTest {
         WebTarget target = client.target("http://18.216.201.147:8080/settleup/services/settleUpService/text/800/Sports/2");
 
         String response = target.request(MediaType.TEXT_PLAIN).get(String.class);
+        assertEquals(true, response.contains("SettleUp(id=45, rent_0=535, rent_1=630, rent_2=833, rent_3=1104"));
 
     }
 
