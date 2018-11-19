@@ -76,12 +76,12 @@
                     <h3>Overview</h3>
                     <p>
                         Utilizing the data resources provided by <a href="https://www.huduser.gov/portal/home.html">Housing and Urban Development (HUD)</a>, the Settle Up service
-                        offers users a simple way to distill rental housing average costs in metropolitan areas from the myriad data provided by HUD.
+                        offers users a simple way to distill rental housing median costs in metropolitan areas from the myriad data provided by HUD.
                     </p>
 
                     <p>
-                        This service allows searching of the comprehensive HUD database for average rent based on the number of rooms provided.  In addition,
-                        Settle Up searches by activities in and around the metropolitan area.  The service will return hits within a range of $50 of the average rent based on the
+                        This service allows searching of the comprehensive HUD database for median rent based on the number of rooms provided.  In addition,
+                        Settle Up searches by activities in and around the metropolitan area.  The service will return hits within a range of $50 of the median rent based on the
                         number of rooms.
                     </p>
 
