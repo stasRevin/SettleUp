@@ -158,7 +158,7 @@
                 <div>
                     <h5>Text</h5>
                     <code>
-
+                        SettleUp(id=19, rent_0=485, rent_1=545, rent_2=718, rent_3=941, rent_4=1095, stateAlpha=AL, city=Calhoun County, county=Calhoun County, area=Anniston-Oxford-Jacksonville, AL MSA, activity=Sports, errorMessage=null), SettleUp(id=357, rent_0=483, rent_1=541, rent_2=715, rent_3=948, rent_4=1113, stateAlpha=OH, city=Richland County, county=Richland County, area=Mansfield, OH MSA, activity=Sports, errorMessage=null)
                     </code>
                 </div>
 
