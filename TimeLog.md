@@ -18,3 +18,5 @@
 | 11/14/18  | Working on display json, xml results with Sasha/Stas | 3 | Keith |
 |11/14/18| Working on displaying json, xml with Sasha and Keith |3| Stas|
 |11/17/18| Introducing exception handling |3| Stas |
+|11/17/18|Exception handling on activities.|1||Sasha|
+|11/18/2018|Working on the group project unit test for exceptions. User display cleanup |3 hours|
