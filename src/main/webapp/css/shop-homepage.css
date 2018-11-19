@@ -34,3 +34,8 @@ footer {
   width: 100%;
   text-align: center;
 }
+xmp {
+  font-size: 87.5%;
+  text-color: #e83e8c;
+  word-break: break-word;
+}
