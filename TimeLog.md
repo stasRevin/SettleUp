@@ -21,3 +21,4 @@
 |11/17/18|Exception handling on activities.|1||Sasha|
 |11/18/2018|Working on the group project unit test for exceptions. User display cleanup |3 hours|
 |11/18/2018|Javadocs and fixing text output |2|Stas|
+| 11/18/18 | API Usage page, other trouble shooting | 3 | Keith |
