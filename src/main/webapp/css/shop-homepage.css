@@ -19,6 +19,14 @@ body {
   }
 }
 
+.carousel-item img {
+  height: 400px!important;
+}
+
+#table_response {
+  padding-top: 30px;
+}
+
 footer {
   position: fixed;
   left: 0;

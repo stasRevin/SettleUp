@@ -62,6 +62,9 @@ public class ResponseServlet extends HttpServlet {
 
                     List<SettleUp> results = settleClient.getJSONResults(rent, activity, numberOfBedrooms);
                     request.setAttribute("results", results);
+                    request.setAttribute("bedrooms", numberOfBedrooms);
+                    request.setAttribute("price", rent);
+
                     dispatcher = request.getRequestDispatcher("/index.jsp");
                     dispatcher.forward(request, response);
 
@@ -76,6 +79,8 @@ public class ResponseServlet extends HttpServlet {
                 try {
                     List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
                     request.setAttribute("results", results);
+                    request.setAttribute("bedrooms", numberOfBedrooms);
+                    request.setAttribute("price", rent);
 
                     dispatcher = request.getRequestDispatcher("/index.jsp");
                     dispatcher.forward(request, response);

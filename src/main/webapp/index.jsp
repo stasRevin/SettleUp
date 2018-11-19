@@ -135,16 +135,13 @@
             </div>
             <!-- /.row -->
 
-            <div>
+            <div id="table_response">
 
                 <table class="table">
                     <thead>
                         <th>Metro Area</th>
-                        <th>Rent 0 Rooms</th>
-                        <th>Rent 1 Room</th>
-                        <th>Rent 2 Rooms</th>
-                        <th>Rent 3 Rooms</th>
-                        <th>Rent 4 Rooms</th>
+                        <th>Number of Rooms</th>
+                        <th>Requested Price</th>
                         <th>Activities</th>
                     </thead>
                     <tbody>
@@ -153,11 +150,8 @@
                         <c:when test="${empty result.errorMessage}">
                         <tr>
                         <td>${result.area}</td>
-                        <td>$ ${result.rent_0}</td>
-                        <td>$ ${result.rent_1}</td>
-                        <td>$ ${result.rent_2}</td>
-                        <td>$ ${result.rent_3}</td>
-                        <td>$ ${result.rent_4}</td>
+                        <td>${bedrooms}</td>
+                        <td>${price}</td>
                         <td>${result.activity}</td>
                         </tr>
                         </c:when>
@@ -191,14 +185,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="static/jquery/jquery.min.js"></script>
 <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script type="application/javascript">
-    $(document).ready(function () {
-        if ($('tbody').children().length === 0) {
-            console.log('here');
-            $('table').hide();
-        }
-    });
-</script>
+<script type="application/javascript"></script>
 </body>
 
 </html>
