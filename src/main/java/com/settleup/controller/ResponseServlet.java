@@ -40,57 +40,74 @@ public class ResponseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        RequestDispatcher dispatcher;
-        SettleUpClient settleClient = new SettleUpClient();
-
         String responseType = request.getParameter("returnType");
         String rentString = request.getParameter("monthlyRent").trim();
         String activity = request.getParameter("activity");
         int numberOfBedrooms = Integer.parseInt(request.getParameter("numberOfBedrooms"));
 
-        if ( rentString.equals("")) {
+        if (rentString.equals("")) {
 
             request.setAttribute("form", "empty");
-            dispatcher = request.getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
+            forward(request, response);
 
         } else {
 
-            int rent = Integer.parseInt(rentString);
-            if ( responseType.equals("json")) {
-                try {
+            try {
 
-                    List<SettleUp> results = settleClient.getJSONResults(rent, activity, numberOfBedrooms);
-                    request.setAttribute("results", results);
-                    request.setAttribute("bedrooms", numberOfBedrooms);
-                    request.setAttribute("price", rent);
+                List<SettleUp> results = getResults(responseType, rentString, activity, numberOfBedrooms);
+                request.setAttribute("results", results);
+                request.setAttribute("bedrooms", numberOfBedrooms);
+                request.setAttribute("price", rentString);
 
-                    dispatcher = request.getRequestDispatcher("/index.jsp");
-                    dispatcher.forward(request, response);
+            } catch (Exception exception) {
 
-                } catch (IOException ioException) {
-                    logger.error(ioException);
-                } catch (Exception exception) {
-                    logger.error(exception);
-                }
-
-            } else if ( responseType.equals("xml")) {
-
-                try {
-                    List<SettleUp> results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
-                    request.setAttribute("results", results);
-                    request.setAttribute("bedrooms", numberOfBedrooms);
-                    request.setAttribute("price", rent);
-
-                    dispatcher = request.getRequestDispatcher("/index.jsp");
-                    dispatcher.forward(request, response);
-
-                } catch (IOException ioException) {
-                    logger.error(ioException);
-                } catch (Exception exception) {
-                    logger.error(exception);
-                }
+                logger.debug("Exception {}", exception);
             }
+
+            forward(request, response);
         }
     }
+
+    /**
+     * This method forward request and response to the view page.
+     * @param request HttpRequest
+     * @param response HttpResponse
+     * @throws IOException Input output exception
+     * @throws ServletException Servlet exception
+     */
+    private void forward(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    /**
+     * This method gets service results.
+     * @param responseType The response type.
+     * @param rentInput The rent price.
+     * @param activity The activity name.
+     * @param numberOfBedrooms Number of bedrooms.
+     * @return
+     * @throws Exception A generic service exception.
+     */
+    private List<SettleUp> getResults(String responseType, String rentInput, String activity, int numberOfBedrooms)
+                throws Exception {
+
+        SettleUpClient settleClient = new SettleUpClient();
+        int rent = Integer.parseInt(rentInput);
+        List<SettleUp> results = null;
+
+        if (responseType.equals("json")) {
+
+            results = settleClient.getJSONResults(rent, activity, numberOfBedrooms);
+
+        } else if (responseType.equals("xml")) {
+
+            results = settleClient.getXMLResults(rent, activity, numberOfBedrooms);
+
+        }
+
+        return results;
+    }
+
 }
