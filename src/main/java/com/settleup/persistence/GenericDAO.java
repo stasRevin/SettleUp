@@ -31,6 +31,7 @@ public class GenericDAO<T> {
      * @param <T> The type.
      * @return values based on id
      */
+    /*
     public <T>T getById(int id) {
 
         Session session = getSession();
@@ -39,7 +40,7 @@ public class GenericDAO<T> {
         return entity;
 
     }
-
+*/
     /**
      * Get all data from the entity.
      * @return result in the list

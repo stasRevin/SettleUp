@@ -73,9 +73,6 @@ public class SettleUp {
     @Column(name = "activity")
     private String activity;
 
-    @Getter
-    @Setter
-    @XmlTransient
     @Transient
     private String errorMessage;
 
@@ -204,4 +201,20 @@ public class SettleUp {
         this.stateAlpha = stateAlpha;
     }
 
+    /**
+     * This method gets the error message.
+     * @return errorMessage
+     */
+    @XmlElement
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    /**
+     * This method sets the error message.
+     * @param errorMessage The error message.
+     */
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
 }

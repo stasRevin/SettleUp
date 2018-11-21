@@ -31,18 +31,6 @@ class SettleUpTest {
     }
 
     /**
-     * Method to get the city based on the id.
-     */
-    @Test
-    void getPropertyByIdSuccess() {
-
-        SettleUp retriedData = genericDAOSettleUp.getById(51);
-        assertNotNull(retriedData);
-        assertEquals("Deschutes County", retriedData.getCity());
-
-    }
-
-    /**
      * Method to test retrieving all the items from the database
      * and storing all the activities into the set
      */
