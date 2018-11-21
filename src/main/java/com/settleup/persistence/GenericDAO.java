@@ -10,7 +10,7 @@ import java.util.*;
  * Class to serve as database data retriever based on the passed parameters
  * @author oponomarova
  * @author srevin
- * @param <T>
+ * @param <T> The type.
  */
 public class GenericDAO<T> {
 
@@ -18,7 +18,7 @@ public class GenericDAO<T> {
 
     /**
      * Constructor for the the provided type.
-     * @param type
+     * @param type The class type.
      */
     public GenericDAO(Class<T> type) {
 
@@ -27,8 +27,8 @@ public class GenericDAO<T> {
 
     /**
      * Retrieves data based on the id value of the entity
-     * @param id
-     * @param <T>
+     * @param id The entity id
+     * @param <T> The type.
      * @return values based on id
      */
     public <T>T getById(int id) {
@@ -58,11 +58,11 @@ public class GenericDAO<T> {
     /**
      * Gets the results based on the range parameters example between 20 and 30 and entities
      * usage (600, 1500, "rent_0", "county", "Cameron County")
-     * @param minValue
-     * @param maxValue
-     * @param searchByPropertyOne
-     * @param searchByPropertyTwo
-     * @param valueTwo
+     * @param minValue The minimum value.
+     * @param maxValue The maximum value.
+     * @param searchByPropertyOne The property one search criterion.
+     * @param searchByPropertyTwo The property two search criterion.
+     * @param valueTwo The second value.
      * @return list of values based on the criteria
      */
     public List<T> getElementsByRangeAndValues(Integer minValue, Integer maxValue, String searchByPropertyOne,

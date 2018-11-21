@@ -104,7 +104,7 @@ public class SettleUp {
 
     /**
      * This method returns the rent price for a studio apartment.
-     * @return rent_0
+     * @return rent_0 The studio rent.
      */
     @XmlElement
     public int getRent_0() {
@@ -113,7 +113,7 @@ public class SettleUp {
 
     /**
      * This method sets the rent price fort a studio apartment.
-     * @param rent_0
+     * @param rent_0 The studio rent.
      */
     public void setRent_0(int rent_0) {
         this.rent_0 = rent_0;
@@ -121,7 +121,7 @@ public class SettleUp {
 
     /**
      * This method returns the rent price for one bedroom apartment.
-     * @return rent_1
+     * @return rent_1 One bedroom rent.
      */
     @XmlElement
     public int getRent_1() {
@@ -130,7 +130,7 @@ public class SettleUp {
 
     /**
      * This method sets the rent price for one bedroom apartment.
-     * @param rent_1
+     * @param rent_1 One bedroom rent.
      */
     public void setRent_1(int rent_1) {
         this.rent_1 = rent_1;
@@ -138,7 +138,7 @@ public class SettleUp {
 
     /**
      * This method returns the rent price for two bedroom apartment.
-     * @return rent_2
+     * @return rent_2 Two bedroom rent.
      */
     @XmlElement
     public int getRent_2() {
@@ -147,7 +147,7 @@ public class SettleUp {
 
     /**
      * This method sets the rent price for the two bedroom apartment.
-     * @param rent_2
+     * @param rent_2 Two bedroom rent.
      */
     public void setRent_2(int rent_2) {
         this.rent_2 = rent_2;
@@ -155,7 +155,7 @@ public class SettleUp {
 
     /**
      * This method returns the rent price for the three bedroom apartment.
-     * @return rent_3
+     * @return rent_3 Three bedroom rent.
      */
     @XmlElement
     public int getRent_3() {
@@ -164,7 +164,7 @@ public class SettleUp {
 
     /**
      * This method sets the rent price for the three bedroom apartment.
-     * @param rent_3
+     * @param rent_3 Three bedroom rent.
      */
     public void setRent_3(int rent_3) {
         this.rent_3 = rent_3;
@@ -172,7 +172,7 @@ public class SettleUp {
 
     /**
      * This method returns the rent price for the four bedroom apartment.
-     * @return rent_4
+     * @return rent_4 Four bedroom rent.
      */
     @XmlElement
     public int getRent_4() {
@@ -181,7 +181,7 @@ public class SettleUp {
 
     /**
      * This method sets the rent price for the four bedroom apartment.
-     * @param rent_4
+     * @param rent_4 Four bedroom rent.
      */
     public void setRent_4(int rent_4) {
         this.rent_4 = rent_4;
@@ -189,7 +189,7 @@ public class SettleUp {
 
     /**
      * This method return the state abbreviation.
-     * @return stateAlpha
+     * @return stateAlpha The state abbreviation.
      */
     @XmlElement
     public String getStateAlpha() {
@@ -198,7 +198,7 @@ public class SettleUp {
 
     /**
      * This method sets the state abbreviation.
-     * @param stateAlpha
+     * @param stateAlpha The state abbreviation.
      */
     public void setStateAlpha(String stateAlpha) {
         this.stateAlpha = stateAlpha;

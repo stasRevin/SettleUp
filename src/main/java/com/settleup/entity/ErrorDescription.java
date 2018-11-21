@@ -31,7 +31,7 @@ public class ErrorDescription {
 
     /**
      * This method sets value of the error code.
-     * @param errorCode
+     * @param errorCode The error code.
      */
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
@@ -39,7 +39,7 @@ public class ErrorDescription {
 
     /**
      * This method returns the error message.
-     * @return message
+     * @return message The error message.
      */
     @XmlElement
     public String getMessage() {
@@ -48,7 +48,7 @@ public class ErrorDescription {
 
     /**
      * This method sets the value of the error message.
-     * @param message
+     * @param message The error message.
      */
     public void setMessage(String message) {
         this.message = message;

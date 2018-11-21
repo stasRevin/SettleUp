@@ -20,8 +20,8 @@ public class SettleUpExceptionMapper {
 
     /**
      * This method maps exceptions to JSON format.
-     * @param exception
-     * @param statusCode
+     * @param exception The generic exception.
+     * @param statusCode The error status code.
      * @return JSON response
      */
     @Produces({MediaType.APPLICATION_JSON})
@@ -32,8 +32,8 @@ public class SettleUpExceptionMapper {
 
     /**
      * This method maps exceptions to XML format.
-     * @param exception
-     * @param statusCode
+     * @param exception The generic exception.
+     * @param statusCode The error status code.
      * @return XML response
      */
     @Produces({MediaType.APPLICATION_XML})

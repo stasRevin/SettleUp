@@ -1,0 +1,6 @@
+com.settleUpService
+com.settleup.client
+com.settleup.controller
+com.settleup.entity
+com.settleup.persistence
+com.settleup.util

@@ -32,10 +32,10 @@ public class ResponseServlet extends HttpServlet {
      * Method to retrieve city based on the user incoming input from the POST form
      * method forwards result to the index page for display
      * method validates user input
-     * @param request
-     * @param response
-     * @throws ServletException
-     * @throws IOException
+     * @param request The HttpRequest.
+     * @param response The HttpResponse.
+     * @throws ServletException Servlet exception.
+     * @throws IOException Input output exception.
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

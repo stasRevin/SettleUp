@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * This is SettleUpService class designed to serve as a RESTful service resource for the application. This service
  * takes rent price, type of recreational activity and a number of bedrooms for an apartment to produce a list
- * of cities featuring provided by the user activities where one can find a similar type of apartment\
+ * of cities featuring provided by the user activities where one can find a similar type of apartment
  * with a similar monthly rental price.
  * @author srevin
  */
@@ -24,9 +24,9 @@ public class SettleUpService {
 
     /**
      * This method produces JSON response
-     * @param rent
-     * @param activity
-     * @param numberOfBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberOfBedrooms Number of bedrooms.
      * @return JSON response
      */
     @GET
@@ -53,8 +53,8 @@ public class SettleUpService {
 
     /**
      * This method creates a service error message for both JSON and XML output formats.
-     * @param statusInput
-     * @param responseType
+     * @param statusInput The status input.
+     * @param responseType The response type.
      * @return response with a specified error message
      */
     private Response createErrorMessage(Response.Status statusInput, String responseType) {
@@ -84,9 +84,9 @@ public class SettleUpService {
 
     /**
      * This method produces an XML response.
-     * @param rent
-     * @param activity
-     * @param numberOfBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberOfBedrooms Number of bedrooms.
      * @return XML response
      */
     @GET
@@ -118,9 +118,9 @@ public class SettleUpService {
 
     /**
      * This method produces a plain text response.
-     * @param rent
-     * @param activity
-     * @param numberOfBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberOfBedrooms Number of bedrooms.
      * @return Plain text response
      */
     @GET
@@ -141,7 +141,7 @@ public class SettleUpService {
 
     /**
      * This method returns the name of the column that lists rent prices for the specified number of bedrooms.
-     * @param numberOfBedrooms
+     * @param numberOfBedrooms Number of bedrooms.
      * @return columnName
      */
     private String getNumberOfBedroomsColumn(int numberOfBedrooms) {
@@ -172,9 +172,9 @@ public class SettleUpService {
 
     /**
      * This method retrieves required data from the database.
-     * @param rent
-     * @param activity
-     * @param numberOfBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberOfBedrooms Number of bedrooms.
      * @return results The list of the results found.
      */
     private List<SettleUp> getDataFromDatabase(int rent, String activity, int numberOfBedrooms) {

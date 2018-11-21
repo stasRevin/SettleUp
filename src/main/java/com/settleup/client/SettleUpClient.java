@@ -25,11 +25,11 @@ public class SettleUpClient {
 
     /**
      * This method produces JSON results.
-     * @param rent
-     * @param activity
-     * @param numberBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberBedrooms Number of bedrooms
      * @return results The list of the apartment search results.
-     * @throws Exception
+     * @throws Exception The generic exception.
      */
     public List<SettleUp> getJSONResults(int rent, String activity, int numberBedrooms) throws Exception {
 
@@ -50,11 +50,11 @@ public class SettleUpClient {
 
     /**
      * This methods produces results in XML format
-     * @param rent
-     * @param activity
-     * @param numberBedrooms
+     * @param rent The rent price.
+     * @param activity The activity name.
+     * @param numberBedrooms Number of bedrooms.
      * @return results The list of the apartment search results.
-     * @throws Exception
+     * @throws Exception Generic exception.
      */
     public List<SettleUp> getXMLResults(int rent, String activity, int numberBedrooms) throws Exception {
 
@@ -78,9 +78,9 @@ public class SettleUpClient {
 
     /**
      * This method produces the response from the service.
-     * @param mediaType
-     * @param targetUrl
-     * @param settleUpList
+     * @param mediaType The type of the media.
+     * @param targetUrl The target URL
+     * @param settleUpList The list of SettleUp objects.
      * @return response
      */
     private String getResponse(String mediaType, String targetUrl, List<SettleUp> settleUpList) {
