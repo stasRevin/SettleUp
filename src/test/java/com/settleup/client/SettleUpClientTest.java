@@ -46,10 +46,22 @@ class SettleUpClientTest {
 
         ObjectMapper mapper = new ObjectMapper();
         List<SettleUp> results = mapper.readValue(response, new TypeReference<List<SettleUp>>(){});
+        testRentRange(results);
 
         assertEquals(630, results.get(0).getRent_1());
     }
 
+
+    /**
+     * This method tests whether the range was calculated correctly.
+     * @param results
+     */
+    @Test
+    private void testRentRange(List<SettleUp> results) {
+
+        long numberOfIncorrectCalculations = results.stream().mapToInt(SettleUp::getRent_2).filter(r -> r > 850 || r < 750).count();
+        assertEquals(0, numberOfIncorrectCalculations);
+    }
     /**
      * This method tests whether the service returns the output in the text format.
      */
