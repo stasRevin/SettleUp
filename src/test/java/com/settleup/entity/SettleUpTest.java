@@ -56,7 +56,7 @@ class SettleUpTest {
             activitySet.add(list.getActivity());
         }
         assertEquals("Sports", allData.get(0).getActivity());
-        assertEquals(10, activitySet.size());
+        assertEquals(9, activitySet.size());
     }
 
     /**
