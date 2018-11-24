@@ -23,3 +23,4 @@
 |11/18/2018|Javadocs and fixing text output |2|Stas|
 | 11/18/18 | API Usage page, other trouble shooting | 3 | Keith |
 | 11/19/18 | Misc front ent tweaking | .5 | Keith
+|11/20/2018| Final cleanup, writing javadoc.||Sasha|
