@@ -20,9 +20,4 @@ with the way to enjoy your hobbies.
 * JUnit Testing
 
 
-
-### Design
-
-* [Database Design](DesignDocuments/databaseDiagram.png)
-
 ### [Project Plan](ProjectPlan.md)
